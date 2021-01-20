@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú Restaurante</title>
     <link rel="stylesheet" href="styles/style1.css">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
 </head>
 <body>
@@ -20,19 +23,65 @@
         <main>
             <div id="slider"></div>
     
-            <div class="list"></div>
+            <div id="list"></div>
         </main>
     </div>
-    
-
-    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 
     <script src="scripts/listaplatos.js"></script>
     <script src="scripts/categorias.js"></script>
     
-    <script type="text/babel" src="scripts/slider.js">
-    </script>
+    <script type="text/babel">
+    const Category = (props) => {
+        return (
+            <div id={props.id} className="cardSlider">
+                <img src={props.img}/>
+                <p>{props.name}</p>
+            </div>
+    )}
+    const CategoryList = () =>{
+        return (
+                <div>
+                {listaCategorias.map((category, i) => {
+                return <Category key={i} id={category.nombreCategoria} img={category.imgCategoria} name={category.nombreCategoria}/>
+                })}    
+                </div>
+            );
+    }
+    ReactDOM.render( CategoryList(), document.getElementById("slider"));
+
+    const Plate = (props) => {
+        return (
+            <div className="elemento">
+            <img src={props.img}/>
+            <div className="texto ">
+                <p>{props.precioPlato}&#8364</p>
+                <h5>{props.nombrePlato}</h5>
+                <h6>{props.descripcionPlato}</h6>
+            </div>
+            <div className="contador" data-numero={props.id}>
+                <button  className="resta">-</button>
+                <p className="quantity">{props.cantidad}</p>
+                <button  className="suma">+</button>
+            </div>
+        </div>
+        )
+    }
+    class PlateList extends React.Component {
+        constructor(props){
+            super(props)
+            this.state = {    }
+        }
+        render(){
+            return (<div>{listaPlatos.map((plate, i) =>{
+                return <Plate  key={i} img={plate.imgPLato} precioPlato={plate.precioPlato} nombrePlato={plate.nombrePlato} descripcionPlato={plate.descripcionPlato} id={plate.id} cantidad={plate.cantidad}/>
+            })}</div>
+                
+            )
+        }
+    }
+    ReactDOM.render( <PlateList />, document.getElementById("list"));
+      </script>
+
 </body>
 
 </html>
