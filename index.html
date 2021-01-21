@@ -22,14 +22,25 @@
         </header>
         <main>
             <div id="slider"></div>
-    
             <div id="list"></div>
         </main>
+        <footer>
+            <button onclick="location.href='index2.html'" class="botonCarrito">
+                <img src="img/bolsa.svg " class="imgboton"></img>
+            </button>
+            <p class="price">??????</p>
+        </footer>
     </div>
 
     <script src="scripts/listaplatos.js"></script>
     <script src="scripts/categorias.js"></script>
-    
+
+    <script type="text/babel">
+        function cart() {
+            return index2.html
+        }
+    </script>
+
     <script type="text/babel">
     const Category = (props) => {
         return (
@@ -48,7 +59,39 @@
             );
     }
     ReactDOM.render( CategoryList(), document.getElementById("slider"));
+    </script>
 
+    <script type="text/babel">
+    class Contador extends React.Component {
+        constructor(props){
+            super(props)
+            this.state = {
+                counter: 0
+            }
+        }
+        resta = () => {
+            this.setState((state) => {
+                return state.counter > 0 ?{counter: state.counter - 1} : 0
+            })
+        }
+        suma = () => {
+            this.setState((state) => {
+                return {counter: state.counter + 1}
+            })
+        }
+        render(){
+            return (
+                <div className="contador" data-numero={this.props.id}>
+                <button onClick={this.resta} className="resta">-</button>
+                <p className="quantity">{this.state.counter}</p>
+                <button  onClick={this.suma} className="suma">+</button>
+            </div>
+            )
+        }
+    }
+    </script>
+
+    <script type="text/babel">
     const Plate = (props) => {
         return (
             <div className="elemento">
@@ -58,19 +101,11 @@
                 <h5>{props.nombrePlato}</h5>
                 <h6>{props.descripcionPlato}</h6>
             </div>
-            <div className="contador" data-numero={props.id}>
-                <button  className="resta">-</button>
-                <p className="quantity">{props.cantidad}</p>
-                <button  className="suma">+</button>
-            </div>
+            <Contador id={props.id}/>
         </div>
         )
     }
     class PlateList extends React.Component {
-        constructor(props){
-            super(props)
-            this.state = {    }
-        }
         render(){
             return (<div>{listaPlatos.map((plate, i) =>{
                 return <Plate  key={i} img={plate.imgPLato} precioPlato={plate.precioPlato} nombrePlato={plate.nombrePlato} descripcionPlato={plate.descripcionPlato} id={plate.id} cantidad={plate.cantidad}/>

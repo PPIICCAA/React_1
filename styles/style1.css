@@ -3,7 +3,6 @@
     padding: 0;
     font-family: "Raleway";
 }
-
 .contain {
     height: 100vh;
 }
@@ -149,4 +148,60 @@ header p {
     border: none;
     color: black;
     line-height: 25px;
+}
+footer {
+    height: 10vh;
+    width: 100%;
+    background: #FAFAFA;
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    filter: drop-shadow(0px -5px 10px #B4B4B4);
+}
+.botonCarrito {
+    background: #FF6900;
+    width: 8vh;
+    height: 8vh;
+    border-radius: 50px;
+    top: -50%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 1px 3px hsl(0, 0%, 35%));
+    border-width: 0px;
+    border-style: outset;
+    border-image: initial;
+    cursor: pointer;
+}
+.botonCarrito {
+    background: #FF6900;
+    width: 8vh;
+    height: 8vh;
+    border-radius: 50px;
+    top: -50%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 1px 3px hsl(0, 0%, 35%));
+    border-width: 0px;
+    border-style: outset;
+    border-image: initial;
+    cursor: pointer;
+}
+.imgboton {
+    width: 57%;
+}
+.price {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 40px;
+    letter-spacing: 4px;
+    font-size: 20px;
 }

@@ -6,7 +6,6 @@ let listaPlatos = [{
         descripcionPlato: "Huevos, pancakes y tocino",
         cantidad: 0,
         nombreCategoria: "Desayunos",
-
     },
     {
         id: 2,
@@ -62,7 +61,6 @@ let listaPlatos = [{
         cantidad: 0,
         nombreCategoria: "Cena",
     },
-
     {
         id: 8,
         imgPLato: "./img/platos/pieLimon.jpg",
@@ -81,7 +79,6 @@ let listaPlatos = [{
         cantidad: 0,
         nombreCategoria: "Postres",
     },
-
     {
         id: 10,
         imgPLato: "./img/platos/vinoTinto.jpg",
@@ -109,5 +106,4 @@ let listaPlatos = [{
         cantidad: 0,
         nombreCategoria: "Bebidas",
     },
-
 ]
