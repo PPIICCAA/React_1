@@ -36,12 +36,6 @@
     <script src="scripts/categorias.js"></script>
 
     <script type="text/babel">
-        function cart() {
-            return index2.html
-        }
-    </script>
-
-    <script type="text/babel">
     const Category = (props) => {
         return (
             <div id={props.id} className="cardSlider">
@@ -66,24 +60,27 @@
         constructor(props){
             super(props)
             this.state = {
-                counter: 0
+                counter: JSON.parse(localStorage.getItem(this.props.index)) || this.props.counter 
             }
         }
         resta = () => {
-            this.setState((state) => {
-                return state.counter > 0 ?{counter: state.counter - 1} : 0
-            })
+            localStorage.setItem(this.props.index, this.state.counter - 1)
+            if (this.state.counter > 0){
+                this.setState((state) => {
+                return {counter: this.state.counter - 1} 
+            })}
         }
         suma = () => {
+            localStorage.setItem(this.props.index, this.state.counter + 1)
             this.setState((state) => {
                 return {counter: state.counter + 1}
             })
         }
         render(){
             return (
-                <div className="contador" data-numero={this.props.id}>
+                <div className="contador" data-numero={this.props.index}>
                 <button onClick={this.resta} className="resta">-</button>
-                <p className="quantity">{this.state.counter}</p>
+                <p className="quantity">{localStorage.getItem(this.props.index) ||this.state.counter}</p>
                 <button  onClick={this.suma} className="suma">+</button>
             </div>
             )
@@ -101,14 +98,14 @@
                 <h5>{props.nombrePlato}</h5>
                 <h6>{props.descripcionPlato}</h6>
             </div>
-            <Contador id={props.id}/>
+            <Contador index={props.id} counter={props.number}/>
         </div>
         )
     }
     class PlateList extends React.Component {
         render(){
             return (<div>{listaPlatos.map((plate, i) =>{
-                return <Plate  key={i} img={plate.imgPLato} precioPlato={plate.precioPlato} nombrePlato={plate.nombrePlato} descripcionPlato={plate.descripcionPlato} id={plate.id} cantidad={plate.cantidad}/>
+                return <Plate key={i} img={plate.imgPLato} precioPlato={plate.precioPlato} nombrePlato={plate.nombrePlato} descripcionPlato={plate.descripcionPlato} id={listaPlatos[i].id} cantidad={plate.cantidad} number={listaPlatos[i].cantidad}/>
             })}</div>
                 
             )
