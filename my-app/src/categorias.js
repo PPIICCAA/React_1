@@ -1,34 +1,34 @@
 let listaCategorias = [
     {
-        imgCategoria: "./img/slider/tapas.svg",
+        imgCategoria: "../img/slider/tapas.svg",
         nombreCategoria: "Tapas",
     },
     {
-        imgCategoria: "./img/slider/breakfast.svg",
+        imgCategoria: "../img/slider/breakfast.svg",
         nombreCategoria: "Desayunos",
     },
     {
-        imgCategoria: "./img/slider/salad.png",
+        imgCategoria: "../img/slider/salad.png",
         nombreCategoria: "Ensaladas",
     },
     {
-        imgCategoria: "./img/slider/fastfood.svg",
+        imgCategoria: "../img/slider/fastfood.svg",
         nombreCategoria: "Almuerzos",
     },
     {
-        imgCategoria: "./img/slider/dinner.svg",
+        imgCategoria: "../img/slider/dinner.svg",
         nombreCategoria: "Cena",
     },
     {
-        imgCategoria: "./img/slider/desert.svg",
+        imgCategoria: "../img/slider/desert.svg",
         nombreCategoria: "Postres",
     },
     {
-        imgCategoria: "./img/slider/bebidas.svg",
+        imgCategoria: "../img/slider/bebidas.svg",
         nombreCategoria: "Bebidas",
     },
     {
-        imgCategoria: "./img/slider/all.svg",
+        imgCategoria: "../img/slider/all.svg",
         nombreCategoria: "Todos",
     },
 ];

@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú Restaurante</title>
-    <link rel="stylesheet" href="styles/style1.css">
+    <link rel="stylesheet" href="../src/index.css">
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-
 </head>
 <body>
     <div class="contain">
         <header>
             <div>
                 <h1>Food For Home</h1>
-                <img class="logo" src="./img/logo.png">
+                <img class="logo" src="../img/logo.png">
             </div>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
         </header>
@@ -26,15 +24,14 @@
         </main>
         <footer>
             <button onclick="location.href='index2.html'" class="botonCarrito">
-                <img src="img/bolsa.svg " class="imgboton"></img>
+                <img src="../img/bolsa.svg " class="imgboton"></img>
             </button>
             <p class="price">??????</p>
         </footer>
     </div>
 
-    <script src="scripts/listaplatos.js"></script>
-    <script src="scripts/categorias.js"></script>
-
+    <script src="../src/listaplatos.js"></script>
+    <script src="../src/categorias.js"></script>
     <script type="text/babel">
     const Category = (props) => {
         return (
@@ -54,7 +51,6 @@
     }
     ReactDOM.render( CategoryList(), document.getElementById("slider"));
     </script>
-
     <script type="text/babel">
     class Contador extends React.Component {
         constructor(props){
@@ -65,10 +61,13 @@
         }
         resta = () => {
             localStorage.setItem(this.props.index, this.state.counter - 1)
-            if (this.state.counter > 0){
+            if (localStorage.getItem(this.props.index) >= 0 && this.state.counter >= 1){
                 this.setState((state) => {
                 return {counter: this.state.counter - 1} 
             })}
+            if (this.state.counter === 1){
+                localStorage.removeItem(this.props.index)
+            }
         }
         suma = () => {
             localStorage.setItem(this.props.index, this.state.counter + 1)
@@ -87,14 +86,13 @@
         }
     }
     </script>
-
     <script type="text/babel">
     const Plate = (props) => {
         return (
             <div className="elemento">
             <img src={props.img}/>
             <div className="texto ">
-                <p>{props.precioPlato}&#8364</p>
+                <p>{props.precioPlato}€</p>
                 <h5>{props.nombrePlato}</h5>
                 <h6>{props.descripcionPlato}</h6>
             </div>
@@ -106,14 +104,10 @@
         render(){
             return (<div>{listaPlatos.map((plate, i) =>{
                 return <Plate key={i} img={plate.imgPLato} precioPlato={plate.precioPlato} nombrePlato={plate.nombrePlato} descripcionPlato={plate.descripcionPlato} id={listaPlatos[i].id} cantidad={plate.cantidad} number={listaPlatos[i].cantidad}/>
-            })}</div>
-                
-            )
+            })}</div>)
         }
     }
     ReactDOM.render( <PlateList />, document.getElementById("list"));
-      </script>
-
+    </script>
 </body>
-
 </html>

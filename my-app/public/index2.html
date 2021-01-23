@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Restaurante</title>
+    <link rel="stylesheet" href="../src/index.css">
+    <link rel="stylesheet" href="../src/index2.css">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div class="contain">
+        <header>
+        <div>
+            <button onClick="location.href='index.html'" class="return"><img src="../img/flechita.png" alt="return"></button>
+        </div>
+        <div>
+            <h3>My Cart</h3>
+        </div>
+        </header>
+        <main>
+            <div id="pushList" class="elementosMenu2"></div>
+        </main>
+        <footer class="desglosePrecio">
+            <div class="precio">
+                <div class="columnaTexto">
+                    <p>Subtotal</p>
+                    <p>Tasas</p>
+                    <p>Delivery</p>
+                    <p>TOTAL</p>
+                </div>
+                <div class="columnaPrecio">
+                    <p id="subtotal"></p>
+                    <p id="tasas"></p>
+                    <p id="delivery"></p>
+                    <p id="total"></p>
+                </div>
+            </div>
+            <button class="boton2" onClick="botonEnviarPedido()">Enviar pedido</button>
+        </footer>
+    </div>
+    <script src="../src/listaplatos.js"></script>
+
+    <script type="text/babel">
+        class Contador extends React.Component {
+            constructor(props){
+                super(props)
+                this.state = {
+                    counter: JSON.parse(localStorage.getItem(this.props.index))
+                }
+            }
+            resta = () => {
+                localStorage.setItem(this.props.index, this.state.counter - 1)
+                if (localStorage.getItem(this.props.index) >= 0 && this.state.counter >= 1){
+                    this.setState((state) => {
+                    return {counter: this.state.counter - 1} 
+                })}
+                if (this.state.counter === 1){
+                    localStorage.removeItem(this.props.index)
+                }
+            }
+            suma = () => {
+                localStorage.setItem(this.props.index, this.state.counter + 1)
+                this.setState((state) => {
+                    return {counter: state.counter + 1}
+                })
+            }
+            render(){
+                return (
+                    <div className="contador" data-numero={this.props.index}>
+                    <button onClick={this.resta} className="resta">-</button>
+                    <p className="quantity">{localStorage.getItem(this.props.index)}</p>
+                    <button  onClick={this.suma} className="suma">+</button>
+                </div>
+                )
+            }
+        }
+    </script>
+
+    <script type="text/babel">
+    const ItemsPush = (props) => {
+            return (
+        <div className="elemento">
+            <img src={listaPlatos[props.index].imgPLato}/>
+            <div className="texto ">
+                <p>{listaPlatos[props.index].precioPlato}€</p>
+                <h5>{listaPlatos[props.index].nombrePlato}</h5>
+                <h6>{listaPlatos[props.index].descripcionPlato}</h6>
+            </div>
+            <Contador index={listaPlatos[props.index].id} counter={props.number}/>
+        <button className="botonEliminar">x</button>
+    </div>
+    )}
+    
+    class Items extends React.Component {
+        render() {
+            const array = Object.keys(localStorage)
+            return (<div className="list">{array.map((value, index) => {
+                return <ItemsPush index={value} key={index} number={localStorage.getItem(value)}/>
+            })}</div>)
+        }
+    }
+    ReactDOM.render( <Items />, document.getElementById("pushList"));
+    </script>
+</body>
+
+</html>
