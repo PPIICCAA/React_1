@@ -61,11 +61,11 @@
         }
         resta = () => {
             localStorage.setItem(this.props.index, this.state.counter - 1)
-            if (localStorage.getItem(this.props.index) >= 0 && this.state.counter >= 1){
+            if (localStorage.getItem(this.props.index) >= 0){
                 this.setState((state) => {
                 return {counter: this.state.counter - 1} 
             })}
-            if (this.state.counter === 1){
+            if (this.state.counter <= 1 ){
                 localStorage.removeItem(this.props.index)
             }
         }

@@ -31,12 +31,7 @@
                     <p>Delivery</p>
                     <p>TOTAL</p>
                 </div>
-                <div class="columnaPrecio">
-                    <p id="subtotal"></p>
-                    <p id="tasas"></p>
-                    <p id="delivery"></p>
-                    <p id="total"></p>
-                </div>
+                <div id="price"></div>
             </div>
             <button class="boton2" onClick="botonEnviarPedido()">Enviar pedido</button>
         </footer>
@@ -59,6 +54,7 @@
                 })}
                 if (this.state.counter === 1){
                     localStorage.removeItem(this.props.index)
+                    window.location.reload(true);
                 }
             }
             suma = () => {
@@ -80,19 +76,24 @@
     </script>
 
     <script type="text/babel">
-    const ItemsPush = (props) => {
+    class ItemsPush extends React.Component {
+        x = () => {
+            localStorage.removeItem(this.props.index)
+            window.location.reload(true);
+        }
+        render (){
             return (
         <div className="elemento">
-            <img src={listaPlatos[props.index].imgPLato}/>
+            <img src={listaPlatos[this.props.index].imgPLato}/>
             <div className="texto ">
-                <p>{listaPlatos[props.index].precioPlato}€</p>
-                <h5>{listaPlatos[props.index].nombrePlato}</h5>
-                <h6>{listaPlatos[props.index].descripcionPlato}</h6>
+                <p>{listaPlatos[this.props.index].precioPlato}€</p>
+                <h5>{listaPlatos[this.props.index].nombrePlato}</h5>
+                <h6>{listaPlatos[this.props.index].descripcionPlato}</h6>
             </div>
-            <Contador index={listaPlatos[props.index].id} counter={props.number}/>
-        <button className="botonEliminar">x</button>
+            <Contador index={listaPlatos[this.props.index].id} counter={this.props.number}/>
+        <button className="botonEliminar" onClick={this.x}>x</button>
     </div>
-    )}
+    )}}
     
     class Items extends React.Component {
         render() {
@@ -104,6 +105,34 @@
     }
     ReactDOM.render( <Items />, document.getElementById("pushList"));
     </script>
+
+    <script type="text/babel">
+        class Price extends React.Component {
+            constructor(props){
+                super(props)
+                this.state = {
+                    subtotal: 0,
+                    quantity: 0,
+                }
+            }
+            render(){
+                Object.keys(localStorage).map((plate, id)=> {
+                    return (
+                        this.state.subtotal += listaPlatos[plate].precioPlato * listaPlatos[plate].cantidad                  
+                    )
+                })
+                return (
+                    <div className="columnaPrecio">
+                        <p id="subtotal">{this.state.subtotal}</p>
+                        <p id="tasas">d</p>
+                        <p id="delivery">d</p>
+                        <p id="total">d</p>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render( <Price />, document.getElementById("price"));
+        </script>
 </body>
 
 </html>
