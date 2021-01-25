@@ -26,7 +26,7 @@
             <button onclick="location.href='index2.html'" class="botonCarrito">
                 <img src="../img/bolsa.svg " class="imgboton"></img>
             </button>
-            <p class="price">??????</p>
+            <div class="price"></div>
         </footer>
     </div>
 
@@ -52,6 +52,53 @@
     ReactDOM.render( CategoryList(), document.getElementById("slider"));
     </script>
     <script type="text/babel">
+    class TotalSuma extends React.Component {
+                constructor(props){
+                    super(props)
+                    this.state = {
+                        subtotal: 0,
+                        tasas: 0.10
+                    }
+                }
+                render(){
+                    Object.keys(localStorage).map((plate)=> {
+                            return (
+                            this.state.subtotal = listaPlatos[plate].precioPlato * listaPlatos[plate].cantidad,
+                            console.log(this.state.subtotal)
+                        )
+                    })
+                    return (
+                        <div>
+                            <p>{this.state.subtotal + (this.state.subtotal * this.state.tasas)}</p>
+                        </div>
+                    )
+                }
+            }
+    
+            class TotalResta extends React.Component {
+                constructor(props){
+                    super(props)
+                    this.state = {
+                        subtotal: 0,
+                        tasas: 0.10
+                    }
+                }
+                render(){
+                    Object.keys(localStorage).map((plate, id)=> {
+                            return (
+                            this.state.subtotal = 0,
+                            this.state.subtotal += listaPlatos[plate].precioPlato * localStorage.getItem(plate)
+                        )})
+                        
+                    return (
+                        <div>
+                            <p>{Object.keys(localStorage).length == 0 ? 0 : this.state.subtotal + (this.state.subtotal * this.state.tasas)}</p>
+                        </div>
+                    )
+                }
+            }
+    </script>
+    <script type="text/babel">
     class Contador extends React.Component {
         constructor(props){
             super(props)
@@ -60,7 +107,9 @@
             }
         }
         resta = () => {
+            ReactDOM.render( <TotalResta />, document.querySelector(".price"));
             localStorage.setItem(this.props.index, this.state.counter - 1)
+            listaPlatos[this.props.index].cantidad = localStorage.getItem(this.props.index)
             if (localStorage.getItem(this.props.index) >= 0){
                 this.setState((state) => {
                 return {counter: this.state.counter - 1} 
@@ -70,14 +119,16 @@
             }
         }
         suma = () => {
+            ReactDOM.render( <TotalSuma />, document.querySelector(".price"));
             localStorage.setItem(this.props.index, this.state.counter + 1)
+            listaPlatos[this.props.index].cantidad = localStorage.getItem(this.props.index)
             this.setState((state) => {
                 return {counter: state.counter + 1}
             })
         }
         render(){
             return (
-                <div className="contador" data-numero={this.props.index}>
+            <div className="contador" data-numero={this.props.index}>
                 <button onClick={this.resta} className="resta">-</button>
                 <p className="quantity">{localStorage.getItem(this.props.index) ||this.state.counter}</p>
                 <button  onClick={this.suma} className="suma">+</button>
@@ -108,6 +159,30 @@
         }
     }
     ReactDOM.render( <PlateList />, document.getElementById("list"));
+    </script>
+    <script type="text/babel">
+    class Total extends React.Component {
+            constructor(props){
+                super(props)
+                this.state = {
+                    subtotal: 0.00,
+                    tasas: 0.10
+                }
+            }
+            render(){
+                Object.keys(localStorage).map((plate, id)=> {
+                        return (
+                        this.state.subtotal += listaPlatos[plate].precioPlato * localStorage.getItem(plate)                  
+                    )
+                })
+                return (
+                    <div>
+                        <p>{this.state.subtotal + (this.state.subtotal * this.state.tasas)}</p>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render( <Total />, document.querySelector(".price"));
     </script>
 </body>
 </html>
