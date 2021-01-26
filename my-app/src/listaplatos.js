@@ -5,7 +5,7 @@ let listaPlatos = [{
         nombrePlato: "Desayuno de la Casa",
         descripcionPlato: "Huevos, pancakes y tocino",
         cantidad: 0,
-        nombreCategoria: "Desayunos",
+        nombreCategoria: ["Desayunos", "Todos"],
     },
     {
         id: 1,
@@ -14,7 +14,7 @@ let listaPlatos = [{
         nombrePlato: "Ensalada César",
         descripcionPlato: "Con salsa ranch",
         cantidad: 0,
-        nombreCategoria: "Ensaladas",
+        nombreCategoria: ["Ensaladas", "Todos"],
     },
     {
         id: 2,
@@ -23,7 +23,7 @@ let listaPlatos = [{
         nombrePlato: "Macarrones con queso",
         descripcionPlato: "Queso parmesano",
         cantidad: 0,
-        nombreCategoria: "Almuerzos, Cena",
+        nombreCategoria: ["Almuerzos", "Cena", "Todos"]
     },
     {
         id: 3,
@@ -32,7 +32,7 @@ let listaPlatos = [{
         nombrePlato: "Hamburguesa Clásica",
         descripcionPlato: "Con queso cheddar",
         cantidad: 0,
-        nombreCategoria: "Almuerzos",
+        nombreCategoria: ["Almuerzos", "Todos"],
     },
     {
         id: 4,
@@ -41,7 +41,7 @@ let listaPlatos = [{
         nombrePlato: "Pollo Asado",
         descripcionPlato: "Con papas fritas",
         cantidad: 0,
-        nombreCategoria: "Almuerzos",
+        nombreCategoria: ["Almuerzos", "Todos"],
     },
     {
         id: 5,
@@ -50,7 +50,7 @@ let listaPlatos = [{
         nombrePlato: "Pizza Margarita",
         descripcionPlato: "Tomate, mozzarella y albahaca",
         cantidad: 0,
-        nombreCategoria: "Almuerzos",
+        nombreCategoria: ["Almuerzos", "Todos"],
     },
     {
         id: 6,
@@ -59,7 +59,7 @@ let listaPlatos = [{
         nombrePlato: "Pescado a la plancha",
         descripcionPlato: "Pescado de temporada y verduras",
         cantidad: 0,
-        nombreCategoria: "Cena",
+        nombreCategoria: ["Cena", "Todos"],
     },
     {
         id: 7,
@@ -68,7 +68,7 @@ let listaPlatos = [{
         nombrePlato: "Pie de Limón",
         descripcionPlato: "De la casa",
         cantidad: 0,
-        nombreCategoria: "Postres",
+        nombreCategoria: ["Postres", "Todos"],
     },
     {
         id: 8,
@@ -77,7 +77,7 @@ let listaPlatos = [{
         nombrePlato: "Cheesecake",
         descripcionPlato: "Con frutos rojos",
         cantidad: 0,
-        nombreCategoria: "Postres",
+        nombreCategoria: ["Postres", "Todos"],
     },
     {
         id: 9,
@@ -86,7 +86,7 @@ let listaPlatos = [{
         nombrePlato: "Vino Tinto",
         descripcionPlato: "De la casa",
         cantidad: 0,
-        nombreCategoria: "Bebidas",
+        nombreCategoria: ["Bebidas", "Todos"],
     },
     {
         id: 10,
@@ -95,7 +95,7 @@ let listaPlatos = [{
         nombrePlato: "Vino Blanco",
         descripcionPlato: "De la casa",
         cantidad: 0,
-        nombreCategoria: "Bebidas",
+        nombreCategoria: ["Bebidas", "Todos"],
     },
     {
         id: 11,
@@ -104,6 +104,6 @@ let listaPlatos = [{
         nombrePlato: "Cerveza",
         descripcionPlato: "De la casa",
         cantidad: 0,
-        nombreCategoria: "Bebidas",
+        nombreCategoria: ["Bebidas", "Todos"],
     },
 ]

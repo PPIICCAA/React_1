@@ -43,16 +43,20 @@ h3 {
 }
 .columnaPrecio p {
     color: white;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: 0.07em;
 }
 .columnaTexto {
     width: 60vw;
 }
 .columnaTexto p {
     color: white;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: 0.07em;
 }
 .boton2 {
     width: 290px;

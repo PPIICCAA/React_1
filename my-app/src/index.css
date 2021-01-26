@@ -205,3 +205,16 @@ footer {
   letter-spacing: 4px;
   font-size: 20px;
 }
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+#slider p {
+  font-weight: 500;
+  font-size: 1.5vh;
+  letter-spacing: 0.07em;
+  color: #585858;
+}
