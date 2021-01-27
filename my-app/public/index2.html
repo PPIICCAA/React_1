@@ -33,7 +33,8 @@
                 </div>
                 <div id="price"></div>
             </div>
-            <button class="boton2" onClick="botonEnviarPedido()">Enviar pedido</button>
+            <button class="boton2" onclick="window.location.href='https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fmoney&state=%2F'">Enviar pedido</button>
+            
         </footer>
     </div>
     <script src="../src/listaplatos.js"></script>
@@ -50,7 +51,7 @@
                         let array = []
                     Object.keys(localStorage).map((plate , element) =>{
                         return (
-                            element = (listaPlatos[plate].precioPlato * listaPlatos[plate].cantidad),
+                            element = (listaPlatos[plate].precioPlato * localStorage.getItem(plate)),
                             this.state.subtotal = element,
                             array.push(element)
                         )
@@ -83,7 +84,7 @@
                         let array = []
                     Object.keys(localStorage).map((plate , element) =>{
                         return (
-                            element = (listaPlatos[plate].precioPlato * listaPlatos[plate].cantidad),
+                            element = (listaPlatos[plate].precioPlato * localStorage.getItem(plate)),
                             this.state.subtotal = element,
                             array.push(element)
                         )
@@ -142,20 +143,19 @@
             resta = () => {
                 ReactDOM.render( <TotalResta />, document.getElementById("price"));
                 localStorage.setItem(this.props.index, this.state.counter - 1)
-                listaPlatos[this.props.index].cantidad = localStorage.getItem(this.props.index)
                 if (localStorage.getItem(this.props.index) >= 0 && this.state.counter >= 1){
                     this.setState((state) => {
                     return {counter: this.state.counter - 1} 
                 })}
                 if (this.state.counter === 1){
                     localStorage.removeItem(this.props.index)
-                    window.location.reload(true);
+                    ReactDOM.render( <Items />, document.getElementById("pushList"));
+                    ReactDOM.render( <TotalResta />, document.getElementById("price"));
                 }
             }
             suma = () => {
                 ReactDOM.render( <TotalSuma />, document.getElementById("price"));
                 localStorage.setItem(this.props.index, this.state.counter + 1)
-                listaPlatos[this.props.index].cantidad = localStorage.getItem(this.props.index)
                 this.setState((state) => {
                     return {counter: state.counter + 1}
                 })
@@ -175,7 +175,8 @@
     class ItemsPush extends React.Component {
         x = () => {
             localStorage.removeItem(this.props.index)
-            window.location.reload(true);
+            ReactDOM.render( <Items />, document.getElementById("pushList"));
+            ReactDOM.render( <TotalResta />, document.getElementById("price"));
         }
         render (){
             return (
